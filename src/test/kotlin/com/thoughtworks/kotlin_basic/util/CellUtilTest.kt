@@ -14,14 +14,11 @@ internal class CellUtilTest {
     @Test
     fun `should return A-Z string given decimal number`() {
         // given
-        val numbers = listOf(1, 26, 27, 16384)
-
+        val numbers = listOf(1, 26, 27, 16384, 18278)
         // when
-        val result = numbers.map(CellUtil::decTo26).toList()
-
+        val result = numbers.map(CellUtil::base10ToBase26).toList()
         // then
-        Assertions.assertThat(result).isEqualTo(listOf("A", "Z", "AA", "XFD"))
-
+        Assertions.assertThat(result).isEqualTo(listOf("A", "Z", "AA", "XFD","ZZZ"))
     }
 
 
@@ -57,18 +54,41 @@ internal class CellUtilTest {
         Assertions.assertThat(result).isEqualTo(listOf("XFB", "XFC", "XFD"))
     }
 
-
-    /**
-     * ZZZ will be range 26 * 26 * 26 = 17576
-     */
     @Test
-    fun `should throw error given range gt 17576`() {
+    fun `should return ZZZ given range (18278,1)`() {
+        //given
+        val range = CellRange(18278, 1)
+        //when
+        val result = CellUtil.getRowRange(range)
+        //then
+        Assertions.assertThat(result).isEqualTo(listOf("ZZZ"))
+    }
+
+    @Test
+    fun `should throw error given total range gt 18278`() {
         // when
         assertFailsWith<IllegalArgumentException> {
-            val range = CellRange(2, 17576)
+            val range = CellRange(2, 18278)
             CellUtil.getRowRange(range)
         }
+    }
 
+    @Test
+    fun `should throw error given range start lt 1`() {
+        // when
+        assertFailsWith<IllegalArgumentException> {
+            val range = CellRange(0, 1)
+            CellUtil.getRowRange(range)
+        }
+    }
+
+    @Test
+    fun `should throw error given range count lt 1`() {
+        // when
+        assertFailsWith<IllegalArgumentException> {
+            val range = CellRange(1, 0)
+            CellUtil.getRowRange(range)
+        }
     }
 
 
