@@ -1,19 +1,38 @@
-import com.thoughtworks.kotlin_basic.util.PrintUtil
+import com.thoughtworks.kotlin_basic.product.adapter.ExternalJsonService
+import com.thoughtworks.kotlin_basic.product.adapter.HttpClient
+import com.thoughtworks.kotlin_basic.product.adapter.InventoryAdapter
+import com.thoughtworks.kotlin_basic.product.adapter.ProductAdapter
+import com.thoughtworks.kotlin_basic.product.service.ProductQueryService
+import com.thoughtworks.kotlin_basic.util.GsonUtil
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ExperimentalCli
+import kotlinx.cli.Subcommand
 
+@OptIn(ExperimentalCli::class)
 fun main(args: Array<String>) {
-    println("Hello World!")
-    println("Program arguments: ${args.joinToString()}")
+    val parser = ArgParser("Product information list")
+    val showProduct = ShowProductInfo()
+    parser.subcommands(showProduct)
+    parser.parse(args)
 
-    val printUtil = PrintUtil()
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
+}
 
-    val headers = listOf("ID", "Name", "Occupation")
-    val rows = listOf(
-        listOf("1", "Alice", "Software Engineer"),
-        listOf("2", "Bob", "Data Scientist"),
-        listOf("3", "Charlie", "Product Manager")
-    )
 
-    printUtil.printTable(headers, rows)
+@OptIn(ExperimentalCli::class)
+class ShowProductInfo : Subcommand("list-product", "list all products information") {
+
+    private val queryService: ProductQueryService
+
+    init {
+        val externalJsonService = HttpClient.getService(ExternalJsonService::class)
+        val inventoryAdapter = InventoryAdapter(externalJsonService)
+        val productAdapter = ProductAdapter(externalJsonService)
+        queryService = ProductQueryService(productAdapter, inventoryAdapter)
+    }
+
+
+    override fun execute() {
+        val result = queryService.listAggregateProductInfo()
+        println(GsonUtil.toJson(result))
+    }
 }

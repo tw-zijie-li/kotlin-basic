@@ -2,6 +2,7 @@ package com.thoughtworks.kotlin_basic.product.adapter
 
 import com.thoughtworks.kotlin_basic.product.dto.InventoryDTO
 import com.thoughtworks.kotlin_basic.product.dto.ProductDTO
+import com.thoughtworks.kotlin_basic.util.GsonUtil
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,13 +14,12 @@ import kotlin.reflect.KClass
  * @since 2024/3/21
  */
 
-
 object HttpClient {
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://localhost:3000")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonUtil.GSON_INSTANCE))
             .build()
     }
 
@@ -27,9 +27,7 @@ object HttpClient {
         return retrofit.create(kClass.java)
     }
 
-
 }
-
 
 interface ExternalJsonService {
 
@@ -38,6 +36,5 @@ interface ExternalJsonService {
 
     @GET("/inventories")
     fun listInventories(): Call<List<InventoryDTO>>
-
 
 }

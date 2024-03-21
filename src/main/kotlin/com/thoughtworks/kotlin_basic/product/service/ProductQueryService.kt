@@ -13,7 +13,7 @@ import java.math.RoundingMode
  * @author zijie.li
  * @since 2024/3/20
  */
-class ItemQueryService(
+class ProductQueryService(
     private val productAdapter: ProductAdapter,
     private val inventoryAdapter: InventoryAdapter
 ) {

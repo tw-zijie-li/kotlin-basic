@@ -19,7 +19,7 @@ import java.math.BigDecimal
  * @since 2024/3/20
  */
 @ExtendWith(MockKExtension::class)
-internal class ItemQueryServiceTest {
+internal class ProductQueryServiceTest {
 
     @MockK
     lateinit var productAdapter: ProductAdapter
@@ -28,7 +28,7 @@ internal class ItemQueryServiceTest {
     lateinit var inventoryAdapter: InventoryAdapter
 
     @InjectMockKs
-    lateinit var queryService: ItemQueryService
+    lateinit var queryService: ProductQueryService
 
     @Test
     fun `should return aggregate inventory given products and inventories`() {
