@@ -6,11 +6,15 @@ import com.thoughtworks.kotlin_basic.product.Product
  * @author zijie.li
  * @since 2024/3/20
  */
-class ProductAdapter {
+class ProductAdapter(
+    private val externalService: ExternalJsonService
+) {
 
     fun listProduct(): List<Product> {
-        TODO()
+        val result = externalService.listProducts().execute().body() ?: emptyList()
+        return result.map {
+            Product(it.id, it.sku, it.name, it.price, enumValueOf(it.type), it.image)
+        }
     }
-
 
 }

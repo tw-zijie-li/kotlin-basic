@@ -9,7 +9,11 @@ class Inventory(
     val sku: String,
     val zone: InventoryZone,
     val quantity: Int
-)
+) {
+    override fun toString(): String {
+        return "Inventory(id=$id, sku='$sku', zone=$zone, quantity=$quantity)"
+    }
+}
 
 enum class InventoryZone {
     US_WEST,

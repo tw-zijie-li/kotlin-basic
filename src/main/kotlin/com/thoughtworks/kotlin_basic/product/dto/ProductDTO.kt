@@ -1,5 +1,6 @@
 package com.thoughtworks.kotlin_basic.product.dto
 
+import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 
 /**
@@ -8,6 +9,7 @@ import java.math.BigDecimal
  */
 class ProductDTO(
     val id: Int,
+    @SerializedName("SKU")
     val sku: String,
     val name: String,
     val price: BigDecimal,
