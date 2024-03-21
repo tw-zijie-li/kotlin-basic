@@ -1,9 +1,9 @@
 package com.thoughtworks.kotlin_basic.product.service
 
-import com.thoughtworks.kotlin_basic.product.Inventory
-import com.thoughtworks.kotlin_basic.product.InventoryZone
 import com.thoughtworks.kotlin_basic.product.Product
 import com.thoughtworks.kotlin_basic.product.ProductType
+import com.thoughtworks.kotlin_basic.product.model.Inventory
+import com.thoughtworks.kotlin_basic.product.model.InventoryZone
 import java.math.BigDecimal
 
 /**

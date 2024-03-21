@@ -1,10 +1,10 @@
 package com.thoughtworks.kotlin_basic.product.service
 
-import com.thoughtworks.kotlin_basic.product.Inventory
 import com.thoughtworks.kotlin_basic.product.Product
 import com.thoughtworks.kotlin_basic.product.ProductType
 import com.thoughtworks.kotlin_basic.product.adapter.InventoryAdapter
 import com.thoughtworks.kotlin_basic.product.adapter.ProductAdapter
+import com.thoughtworks.kotlin_basic.product.model.Inventory
 import com.thoughtworks.kotlin_basic.product.vo.ProductWithInventoryVO
 import java.math.BigDecimal
 import java.math.RoundingMode

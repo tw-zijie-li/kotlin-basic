@@ -1,4 +1,4 @@
-package com.thoughtworks.kotlin_basic.product
+package com.thoughtworks.kotlin_basic.product.model
 
 /**
  * @author zijie.li

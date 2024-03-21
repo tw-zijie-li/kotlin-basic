@@ -1,6 +1,6 @@
 package com.thoughtworks.kotlin_basic.product.adapter
 
-import com.thoughtworks.kotlin_basic.product.Inventory
+import com.thoughtworks.kotlin_basic.product.model.Inventory
 
 /**
  * @author zijie.li
