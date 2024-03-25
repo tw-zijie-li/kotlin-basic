@@ -1,4 +1,4 @@
-package com.thoughtworks.kotlin_basic.product.dto
+package com.thoughtworks.kotlin_basic.product.datatransferobject
 
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal

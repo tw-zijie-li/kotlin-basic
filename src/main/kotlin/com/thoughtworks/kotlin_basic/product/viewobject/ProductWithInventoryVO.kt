@@ -1,4 +1,4 @@
-package com.thoughtworks.kotlin_basic.product.vo
+package com.thoughtworks.kotlin_basic.product.viewobject
 
 import java.math.BigDecimal
 
@@ -20,4 +20,3 @@ data class InventoryVO(
     val sku: String,
     val quantity: Int
 )
-

@@ -1,4 +1,5 @@
-import com.thoughtworks.kotlin_basic.product.adapter.ExternalJsonService
+import com.thoughtworks.kotlin_basic.product.adapter.ExternalInventoryApi
+import com.thoughtworks.kotlin_basic.product.adapter.ExternalProductApi
 import com.thoughtworks.kotlin_basic.product.adapter.HttpClient
 import com.thoughtworks.kotlin_basic.product.adapter.InventoryAdapter
 import com.thoughtworks.kotlin_basic.product.adapter.ProductAdapter
@@ -14,7 +15,6 @@ fun main(args: Array<String>) {
     val showProduct = ShowProductInfo()
     parser.subcommands(showProduct)
     parser.parse(args)
-
 }
 
 
@@ -24,12 +24,12 @@ class ShowProductInfo : Subcommand("list-product", "list all products informatio
     private val queryService: ProductQueryService
 
     init {
-        val externalJsonService = HttpClient.getService(ExternalJsonService::class)
-        val inventoryAdapter = InventoryAdapter(externalJsonService)
-        val productAdapter = ProductAdapter(externalJsonService)
+        val inventoryApi = HttpClient.getService(ExternalInventoryApi::class)
+        val productApi = HttpClient.getService(ExternalProductApi::class)
+        val inventoryAdapter = InventoryAdapter(inventoryApi)
+        val productAdapter = ProductAdapter(productApi)
         queryService = ProductQueryService(productAdapter, inventoryAdapter)
     }
-
 
     override fun execute() {
         val result = queryService.listAggregateProductInfo()

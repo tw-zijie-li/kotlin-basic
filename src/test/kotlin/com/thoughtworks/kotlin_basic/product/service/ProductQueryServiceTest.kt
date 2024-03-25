@@ -3,7 +3,7 @@ package com.thoughtworks.kotlin_basic.product.service
 import com.thoughtworks.kotlin_basic.product.ProductType
 import com.thoughtworks.kotlin_basic.product.adapter.InventoryAdapter
 import com.thoughtworks.kotlin_basic.product.adapter.ProductAdapter
-import com.thoughtworks.kotlin_basic.product.vo.ProductWithInventoryVO
+import com.thoughtworks.kotlin_basic.product.viewobject.ProductWithInventoryVO
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -96,7 +96,6 @@ internal class ProductQueryServiceTest {
             assertThat(price).isEqualTo(BigDecimal("150.0000"))
         }
     }
-
 
     @Test
     fun `should prices be dynamic depend on inventory`() {

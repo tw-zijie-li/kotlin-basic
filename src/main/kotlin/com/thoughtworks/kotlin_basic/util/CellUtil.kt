@@ -29,7 +29,6 @@ object CellUtil {
     }
 }
 
-
 data class CellRange(
     val start: Int,
     val count: Int

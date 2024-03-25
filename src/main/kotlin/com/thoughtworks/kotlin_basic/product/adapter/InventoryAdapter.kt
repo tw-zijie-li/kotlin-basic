@@ -7,7 +7,7 @@ import com.thoughtworks.kotlin_basic.product.model.Inventory
  * @since 2024/3/20
  */
 class InventoryAdapter(
-    private val externalService: ExternalJsonService
+    private val externalService: ExternalInventoryApi
 ) {
 
     fun listInventory(): List<Inventory> {

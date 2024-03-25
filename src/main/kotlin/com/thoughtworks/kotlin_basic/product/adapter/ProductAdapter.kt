@@ -7,7 +7,7 @@ import com.thoughtworks.kotlin_basic.product.Product
  * @since 2024/3/20
  */
 class ProductAdapter(
-    private val externalService: ExternalJsonService
+    private val externalService: ExternalProductApi
 ) {
 
     fun listProduct(): List<Product> {

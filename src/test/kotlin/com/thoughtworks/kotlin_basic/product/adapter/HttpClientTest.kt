@@ -1,6 +1,6 @@
 package com.thoughtworks.kotlin_basic.product.adapter
 
-import com.thoughtworks.kotlin_basic.product.dto.InventoryDTO
+import com.thoughtworks.kotlin_basic.product.datatransferobject.InventoryDTO
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
@@ -12,14 +12,13 @@ import java.math.BigDecimal
  */
 internal class HttpClientTest {
 
-
-    @Disabled // depends on external api service
+    @Disabled("depends on external api service") //
     @Test
     fun `should return product data object given json api `() {
         // given
-        val service = HttpClient.getService(ExternalJsonService::class)
+        val api = HttpClient.getService(ExternalProductApi::class)
         // when
-        val result = service.listProducts().execute()
+        val result = api.listProducts().execute()
         //then
         assertThat(result.body()).isNotEmpty
         val map = result.body()!!.associateBy { it.sku }
@@ -33,13 +32,13 @@ internal class HttpClientTest {
         }
     }
 
-    @Disabled // depends on external api service
+    @Disabled("depends on external api service")
     @Test
     fun `should return inventory data object given json api `() {
         // given
-        val service = HttpClient.getService(ExternalJsonService::class)
+        val api = HttpClient.getService(ExternalInventoryApi::class)
         // when
-        val result = service.listInventories().execute()
+        val result = api.listInventories().execute()
         // then
         assertThat(result.body()).isNotEmpty
         val map = result.body()!!.groupBy { it.sku }
@@ -49,7 +48,6 @@ internal class HttpClientTest {
             InventoryDTO(1, "ABC123", "CN_NORTH", 120),
             InventoryDTO(2, "ABC123", "US_WEST", 80)
         )
-
     }
 
 }
